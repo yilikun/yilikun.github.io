@@ -270,6 +270,124 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/14/pm2常用命令-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yilikun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dimon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/14/pm2常用命令-1/" itemprop="url">'pm2常用命令'</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T15:45:55+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>$ npm install pm2 -g     # 命令行安装 pm2<br>$ pm2 start app.js -i 4 #后台运行pm2，启动4个app.js </p>
+<pre><code># 也可以把&apos;max&apos; 参数传递给 start
+# 正确的进程数目依赖于Cpu的核心数目
+</code></pre><p>$ pm2 start app.js –name my-api # 命名进程<br>$ pm2 list               # 显示所有进程状态<br>$ pm2 monit              # 监视所有进程<br>$ pm2 logs               #  显示所有进程日志<br>$ pm2 stop all           # 停止所有进程<br>$ pm2 restart all        # 重启所有进程<br>$ pm2 reload all         # 0秒停机重载进程 (用于 NETWORKED 进程)<br>$ pm2 stop 0             # 停止指定的进程<br>$ pm2 restart 0          # 重启指定的进程<br>$ pm2 startup            # 产生 init 脚本 保持进程活着<br>$ pm2 web                # 运行健壮的 computer API endpoint (<a href="http://localhost:9615" target="_blank" rel="external">http://localhost:9615</a>)<br>$ pm2 delete 0           # 杀死指定的进程<br>$ pm2 delete all         # 杀死全部进程</p>
+<p>运行进程的不同方式：<br>$ pm2 start app.js -i max  # 根据有效CPU数目启动最大进程数目<br>$ pm2 start app.js -i 3      # 启动3个进程<br>$ pm2 start app.js -x        #用fork模式启动 app.js 而不是使用 cluster<br>$ pm2 start app.js -x – -a 23   # 用fork模式启动 app.js 并且传递参数 (-a 23)<br>$ pm2 start app.js –name serverone  # 启动一个进程并把它命名为 serverone<br>$ pm2 stop serverone       # 停止 serverone 进程<br>$ pm2 start app.json        # 启动进程, 在 app.json里设置选项<br>$ pm2 start app.js -i max – -a 23                   #在–之后给 app.js 传递参数<br>$ pm2 start app.js -i max -e err.log -o out.log  # 启动 并 生成一个配置文件<br>你也可以执行用其他语言编写的app  ( fork 模式):<br>$ pm2 start my-bash-script.sh    -x –interpreter bash<br>$ pm2 start my-python-script.py -x –interpreter python</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/13/回车和换行的故事/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1367,7 +1485,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
