@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/17/git代码冲突解决办法/index.html">
 <meta property="og:site_name" content="Dimon">
 <meta property="og:description" content="Your local changes to the following files would be overwritten by mergeerror: Your local changes to the following files would be overwritten by merge: protected/config/main.php Please, commit your cha">
-<meta property="og:updated_time" content="2017-05-17T02:16:49.331Z">
+<meta property="og:updated_time" content="2017-05-17T02:28:15.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;git代码冲突解决办法&#39;">
 <meta name="twitter:description" content="Your local changes to the following files would be overwritten by mergeerror: Your local changes to the following files would be overwritten by merge: protected/config/main.php Please, commit your cha">
@@ -343,7 +343,12 @@
 <p>参考<a href="http://blog.csdn.net/zwhfyy/article/details/8625228" target="_blank" rel="external">http://blog.csdn.net/zwhfyy/article/details/8625228</a></p>
 <p>如果希望保留生产服务器上所做的改动,仅仅并入新配置项, 处理方法如下:</p>
 <p>git stash<br>git pull<br>git stash pop<br>然后可以使用git diff -w +文件名 来确认代码自动合并的情况.</p>
-<p>反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:</p>
+<p>git stash 可用来暂存当前正在进行的工作， 比如想pull 最新代码， 又不想加新commit， 或者另外一种情况，为了fix 一个紧急的bug,  先stash, 使返回到自己上一个commit, 改完bug之后再stash pop, 继续原来的工作。<br>基础命令：<br>$git stash<br>$do some work<br>$git stash pop</p>
+<p>进阶：<br>Git stash save “work in progress for foo feature”<br>当你多次使用’git stash’命令后，你的栈里将充满了未提交的代码，这时候你会对将哪个版本应用回来有些困惑，</p>
+<p>’git stash list’ 命令可以将当前的Git栈信息打印出来，你只需要将找到对应的版本号，例如使用’git stash apply stash@{1}’就可以将你指定版本号为stash@{1}的工作取出来，当你将所有的栈都应用回来的时候，可以使用’git stash clear’来将栈清空。</p>
+<p>git stash          # save uncommitted changes</p>
+<h1 id="pull-edit-etc"><a href="#pull-edit-etc" class="headerlink" title="pull, edit, etc."></a>pull, edit, etc.</h1><p>git stash list     # list stashed changes in this git<br>git show stash@{0} # see the last stash<br>git stash pop      # apply last stash and remove it from the list</p>
+<p>git stash –help   # for more info<br>反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:</p>
 <p>git reset –hard<br>git pull<br>其中git reset是针对版本,如果想针对文件回退本地修改,使用</p>
 <p>untracked working tree file<br>参考：<a href="http://blog.csdn.net/sheismylife/article/details/7204345" target="_blank" rel="external">http://blog.csdn.net/sheismylife/article/details/7204345</a><br>编写脚本自动编译并部署时的注意</p>
 <p>如果想在C2上编写脚本自动从S1上获取最新代码时，要注意：</p>
@@ -469,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -534,6 +548,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pull-edit-etc"><span class="nav-number">1.</span> <span class="nav-text">pull, edit, etc.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
