@@ -1,0 +1,873 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mysql," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="第一招、mysql服务的启动和停止 net stop mysql net start mysql 第二招、登陆mysql 语法如下： mysql -u用户名 -p用户密码 键入命令mysql -uroot -p， 回车后提示你输入密码，输入12345，然后回车即可进入到mysql中了，mysql的提示符是：">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;mysql常用命令&#39;">
+<meta property="og:url" content="http://yoursite.com/2017/05/25/mysql常用命令/index.html">
+<meta property="og:site_name" content="Dimon">
+<meta property="og:description" content="第一招、mysql服务的启动和停止 net stop mysql net start mysql 第二招、登陆mysql 语法如下： mysql -u用户名 -p用户密码 键入命令mysql -uroot -p， 回车后提示你输入密码，输入12345，然后回车即可进入到mysql中了，mysql的提示符是：">
+<meta property="og:updated_time" content="2017-05-25T11:21:18.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;mysql常用命令&#39;">
+<meta name="twitter:description" content="第一招、mysql服务的启动和停止 net stop mysql net start mysql 第二招、登陆mysql 语法如下： mysql -u用户名 -p用户密码 键入命令mysql -uroot -p， 回车后提示你输入密码，输入12345，然后回车即可进入到mysql中了，mysql的提示符是：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/25/mysql常用命令/"/>
+
+
+
+
+
+  <title>'mysql常用命令' | Dimon</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dimon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">life,code</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/25/mysql常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yilikun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dimon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">'mysql常用命令'</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-25T19:20:12+08:00">
+                2017-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第一招、mysql服务的启动和停止</p>
+<p>net stop mysql</p>
+<p>net start mysql</p>
+<p>第二招、登陆mysql</p>
+<p>语法如下： mysql -u用户名 -p用户密码</p>
+<p>键入命令mysql -uroot -p， 回车后提示你输入密码，输入12345，然后回车即可进入到mysql中了，mysql的提示符是：<br><a id="more"></a></p>
+<p>mysql&gt;</p>
+<p>注意，如果是连接到另外的机器上，则需要加入一个参数-h机器IP</p>
+<p>第三招、增加新用户</p>
+<p>格式：grant 权限 on 数据库.* to 用户名@登录主机 identified by “密码”</p>
+<p>如，增加一个用户user1密码为password1，让其可以在本机上登录， 并对所有数据库有查询、插入、修改、删除的权限。首先用以root用户连入mysql，然后键入以下命令：</p>
+<p>grant select,insert,update,delete on <em>.</em> to user1@localhost Identified by “password1”;</p>
+<p>如果希望该用户能够在任何机器上登陆mysql，则将localhost改为”%”。</p>
+<p>如果你不想user1有密码，可以再打一个命令将密码去掉。</p>
+<p>grant select,insert,update,delete on mydb.* to user1@localhost identified by “”;</p>
+<p>第四招： 操作数据库</p>
+<p>登录到mysql中，然后在mysql的提示符下运行下列命令，每个命令以分号结束。</p>
+<p>1、 显示数据库列表。</p>
+<p>show databases;</p>
+<p>缺省有两个数据库：mysql和test。 mysql库存放着mysql的系统和用户权限信息，我们改密码和新增用户，实际上就是对这个库进行操作。</p>
+<p>2、 显示库中的数据表：</p>
+<p>use mysql;</p>
+<p>show tables;</p>
+<p>3、 显示数据表的结构：</p>
+<p>describe 表名;</p>
+<p>4、 建库与删库：</p>
+<p>create database 库名;</p>
+<p>drop database 库名;</p>
+<p>5、 建表：</p>
+<p>use 库名;</p>
+<p>create table 表名(字段列表);</p>
+<p>drop table 表名;</p>
+<p>6、 清空表中记录：</p>
+<p>delete from 表名;</p>
+<p>7、 显示表中的记录：</p>
+<p>select * from 表名;</p>
+<p>第五招、导出和导入数据</p>
+<ol>
+<li>导出数据：</li>
+</ol>
+<p>mysqldump –opt test &gt; mysql.test</p>
+<p>即将数据库test数据库导出到mysql.test文件，后者是一个文本文件</p>
+<p>如：mysqldump -u root -p123456 –databases dbname &gt; mysql.dbname</p>
+<p>就是把数据库dbname导出到文件mysql.dbname中。</p>
+<ol>
+<li>导入数据:</li>
+</ol>
+<p>mysqlimport -u root -p123456 &lt; mysql.dbname。</p>
+<p>不用解释了吧。</p>
+<ol>
+<li>将文本数据导入数据库:</li>
+</ol>
+<p>文本数据的字段数据之间用tab键隔开。</p>
+<p>use test;</p>
+<p>load data local infile “文件名” into table 表名;</p>
+<p>1:使用SHOW语句找出在服务器上当前存在什么数据库：</p>
+<p>mysql&gt; SHOW DATABASES;</p>
+<p>2:2、创建一个数据库MYSQLDATA</p>
+<p>mysql&gt; CREATE DATABASE MYSQLDATA;</p>
+<p>3:选择你所创建的数据库</p>
+<p>mysql&gt; USE MYSQLDATA; (按回车键出现Database changed 时说明操作成功!)</p>
+<p>4:查看现在的数据库中存在什么表</p>
+<p>mysql&gt; SHOW TABLES;</p>
+<p>5:创建一个数据库表</p>
+<p>mysql&gt; CREATE TABLE MYTABLE (name VARCHAR(20), sex CHAR(1));</p>
+<p>6:显示表的结构：</p>
+<p>mysql&gt; DESCRIBE MYTABLE;</p>
+<p>7:往表中加入记录</p>
+<p>mysql&gt; insert into MYTABLE values (“hyq”,”M”);</p>
+<p>8:用文本方式将数据装入数据库表中(例如D:/mysql.txt)</p>
+<p>mysql&gt; LOAD DATA LOCAL INFILE “D:/mysql.txt” INTO TABLE MYTABLE;</p>
+<p>9:导入.sql文件命令(例如D:/mysql.sql)</p>
+<p>mysql&gt;use database;</p>
+<p>mysql&gt;source d:/mysql.sql;</p>
+<p>10:删除表</p>
+<p>mysql&gt;drop TABLE MYTABLE;</p>
+<p>11:清空表</p>
+<p>mysql&gt;delete from MYTABLE;</p>
+<p>12:更新表中数据</p>
+<p>mysql&gt;update MYTABLE set sex=”f” where name=’hyq’;</p>
+<p>posted on 2006-01-10 16:21 happytian 阅读(6) 评论(0) 编辑 收藏 收藏至365Key</p>
+<p>13：备份数据库</p>
+<p>mysqldump -u root 库名&gt;xxx.data</p>
+<p>14：例2：连接到远程主机上的MYSQL</p>
+<p>假设远程主机的IP为：110.110.110.110，用户名为root,密码为abcd123。则键入以下命令：</p>
+<p>mysql -h110.110.110.110 -uroot -pabcd123</p>
+<p>(注:u与root可以不用加空格，其它也一样)</p>
+<p>3、退出MYSQL命令： exit (回车)</p>
+<p>=====================================================================</p>
+<p>1:使用SHOW语句找出在服务器上当前存在什么数据库：<br>mysql&gt; SHOW DATABASES;<br>2:2、创建一个数据库MYSQLDATA<br>mysql&gt; CREATE DATABASE MYSQLDATA;<br>3:选择你所创建的数据库<br>mysql&gt; USE MYSQLDATA; (按回车键出现Database changed 时说明操作成功！)<br>4:查看现在的数据库中存在什么表<br>mysql&gt; SHOW TABLES;<br>5:创建一个数据库表<br>mysql&gt; CREATE TABLE MYTABLE (name VARCHAR(20), sex CHAR(1));<br>6:显示表的结构：<br>mysql&gt; DESCRIBE MYTABLE;<br>7:往表中加入记录<br>mysql&gt; insert into MYTABLE values (“hyq”,”M”);<br>8:用文本方式将数据装入数据库表中（例如D:/mysql.txt）<br>mysql&gt; LOAD DATA LOCAL INFILE “D:/mysql.txt” INTO TABLE MYTABLE;<br>9:导入.sql文件命令（例如D:/mysql.sql）<br>mysql&gt;use database;<br>mysql&gt;source d:/mysql.sql;<br>10:删除表<br>mysql&gt;drop TABLE MYTABLE;<br>11:清空表<br>mysql&gt;delete from MYTABLE;<br>12:更新表中数据<br>mysql&gt;update MYTABLE set sex=”f” where name=hyq;</p>
+<p>以下是无意中在网络看到的使用MySql的管理心得,<br>摘自:<a href="http://www1.xjtusky.com/article/htmldata/2004_12/3/57/article_1060_1.html" target="_blank" rel="external">http://www1.xjtusky.com/article/htmldata/2004_12/3/57/article_1060_1.html</a> </p>
+<p>在windows中MySql以服务形式存在，在使用前应确保此服务已经启动，未启动可用net start mysql命令启动。而Linux中启动时可用“/etc/rc.d/init.d/mysqld start”命令，注意启动者应具有管理员权限。<br>刚安装好的MySql包含一个含空密码的root帐户和一个匿名帐户，这是很大的安全隐患，对于一些重要的应用我们应将安全性尽可能提高，在这里应把匿名帐户删除、 root帐户设置密码，可用如下命令进行：<br>use mysql;<br>delete from User where User=””;<br>update User set Password=PASSWORD(newpassword) where User=root;<br>如果要对用户所用的登录终端进行限制，可以更新User表中相应用户的Host字段，在进行了以上更改后应重新启动数据库服务，此时登录时可用如下类似命令：<br>mysql -uroot -p;<br>mysql -uroot -pnewpassword;<br>mysql mydb -uroot -p;<br>mysql mydb -uroot -pnewpassword;<br>上面命令参数是常用参数的一部分，详细情况可参考文档。此处的mydb是要登录的数据库的名称。<br>在进行开发和实际应用中，用户不应该只用root用户进行连接数据库，虽然使用root用户进行测试时很方便，但会给系统带来重大安全隐患，也不利于管理技术的提高。我们给一个应用中使用的用户赋予最恰当的数据库权限。如一个只进行数据插入的用户不应赋予其删除数据的权限。MySql的用户管理是通过User表来实现的，添加新用户常用的方法有两个，一是在User表插入相应的数据行，同时设置相应的权限；二是通过GRANT命令创建具有某种权限的用户。其中GRANT的常用用法如下：<br>grant all on mydb.<em> to NewUserName@HostName identified by “password” ;<br>grant usage on </em>.<em> to NewUserName@HostName identified by “password”;<br>grant select,insert,update on mydb.</em> to NewUserName@HostName identified by “password”;<br>grant update,delete on mydb.TestTable to NewUserName@HostName identified by “password”;<br>若要给此用户赋予他在相应对象上的权限的管理能力，可在GRANT后面添加WITH GRANT OPTION选项。而对于用插入User表添加的用户，Password字段应用PASSWORD 函数进行更新加密，以防不轨之人窃看密码。对于那些已经不用的用户应给予清除，权限过界的用户应及时回收权限，回收权限可以通过更新User表相应字段，也可以使用REVOKE操作。<br>下面给出本人从其它资料(www.cn-java.com)获得的对常用权限的解释：<br>全局管理权限：<br>FILE: 在MySQL服务器上读写文件。<br>PROCESS: 显示或杀死属于其它用户的服务线程。<br>RELOAD: 重载访问控制表，刷新日志等。<br>SHUTDOWN: 关闭MySQL服务。<br>数据库/数据表/数据列权限：<br>ALTER: 修改已存在的数据表(例如增加/删除列)和索引。<br>CREATE: 建立新的数据库或数据表。<br>DELETE: 删除表的记录。<br>DROP: 删除数据表或数据库。<br>INDEX: 建立或删除索引。<br>INSERT: 增加表的记录。<br>SELECT: 显示/搜索表的记录。<br>UPDATE: 修改表中已存在的记录。<br>特别的权限：<br>ALL: 允许做任何事(和root一样)。<br>USAGE: 只允许登录–其它什么也不允许做。</p>
+<p>常用MYSQL命令<br>启动：net start mySql;<br>　　进入：mysql -u root -p/mysql -h localhost -u root -p databaseName;<br>　　列出数据库：show databases;<br>　　选择数据库：use databaseName;<br>　　列出表格：show tables；<br>　　创建数据表：mysql&gt; CREATE TABLE mytable (name VARCHAR(20), sex CHAR(1),<br>-&gt; birth DATE, birthaddr VARCHAR(20));<br>    显示表格列的属性：show columns from tableName；<br>    修改表的结构：DESCRIBE mytable;<br>　　建立数据库：source fileName.txt;<br>　　匹配字符：可以用通配符_代表任何一个字符，％代表任何字符串;<br>　　增加一个字段：alter table tabelName add column fieldName dateType;<br>　　增加多个字段：alter table tabelName add column fieldName1 dateType,add columns fieldName2 dateType;<br>　　多行命令输入:注意不能将单词断开;当插入或更改数据时，不能将字段的字符串展开到多行里，否则硬回车将被储存到数据中;<br>　　增加一个管理员帐户：grant all on <em>.</em> to user@localhost identified by “password”;<br>　　每条语句输入完毕后要在末尾填加分号’;’，或者填加’\g’也可以；<br>　　查询时间：select now();<br>　　查询当前用户：select user();<br>　　查询数据库版本：select version();<br>　　查询当前使用的数据库：select database(); </p>
+<pre><code>用文本方式将数据装入一个数据库表 
+</code></pre><p>　　如果一条一条地输入，很麻烦。我们可以用文本文件的方式将所有记录加入你的数据库表中。创建一个文本文件“mysql.txt”，每行包含一个记录，用定位符(tab)把值分开，并且以在CREATE TABLE语句中列出的列次序给出，例如： </p>
+<p>abccs f 1977-07-07 china 　 mary f 1978-12-12 usa tom m 1970-09-02 usa </p>
+<p>　　使用下面命令将文本文件“mytable.txt”装载到mytable表中:mysql&gt; LOAD DATA LOCAL INFILE “mytable.txt” INTO TABLE pet; </p>
+<p>　　再使用如下命令看看是否已将数据输入到数据库表中：mysql&gt; select <em> from mytable;<br>(e129) 　　<br>　　1、删除student_course数据库中的students数据表：<br>　　rm -f student_course/students.</em><br>　　<br>　　2、备份数据库：(将数据库test备份)<br>　　mysqldump -u root -p test&gt;c:\test.txt<br>　　备份表格：(备份test数据库下的mytable表格)<br>　　mysqldump -u root -p test mytable&gt;c:\test.txt<br>　　将备份数据导入到数据库：(导回test数据库)<br>　　mysql -u root -p test<c:\test.txt 　　="" 　　3、创建临时表：(建立临时表zengchao)="" 　　create="" temporary="" table="" zengchao(name="" varchar(10));="" 　　4、创建表是先判断表是否存在="" if="" not="" exists="" students(……);="" 　　5、从已经有的表中复制表的结构="" table2="" select="" *="" from="" table1="" where="" 1<="">1;<br>　　<br>　　6、复制表<br>　　create table table2 select <em> from table1;<br>　　<br>　　7、对表重新命名<br>　　alter table table1 rename as table2;<br>　　<br>　　8、修改列的类型<br>　　alter table table1 modify id int unsigned;//修改列id的类型为int unsigned<br>　　alter table table1 change id sid int unsigned;//修改列id的名字为sid，而且把属性修改为int unsigned<br>　　<br>　　9、创建索引<br>　　alter table table1 add index ind_id (id);<br>　　create index ind_id on table1 (id);<br>　　create unique index ind_id on table1 (id);//建立唯一性索引<br>　　<br>　　10、删除索引<br>　　drop index idx_id on table1;<br>　　alter table table1 drop index ind_id;<br>　　<br>　　11、联合字符或者多个列(将列id与”:”和列name和”=”连接)<br>　　select concat(id,’:’,name,’=’) from students;<br>　　<br>　　12、limit(选出10到20条)&lt;第一个记录集的编号是0&gt;<br>　　select </em> from students order by id limit 9,10;<br>　　<br>　　13、MySQL不支持的功能<br>　　事务，视图，外键和引用完整性，存储过程和触发器<br>　　<br>　　<br>　　14、MySQL会使用索引的操作符号<br>　　&lt;,&lt;=,&gt;=,&gt;,=,between,in,不带%或者_开头的like<br>　　<br>　　15、使用索引的缺点<br>　　1)减慢增删改数据的速度；<br>　　2）占用磁盘空间；<br>　　3）增加查询优化器的负担；<br>　　当查询优化器生成执行计划时，会考虑索引，太多的索引会给查询优化器增加工作量，导致无法选择最优的查询方案；<br>　　<br>　　16、分析索引效率<br>　　方法：在一般的SQL语句前加上explain；<br>　　分析结果的含义：<br>　　1）table：表名；<br>　　2）type：连接的类型，(ALL/Range/Ref)。其中ref是最理想的；<br>　　3）possible_keys：查询可以利用的索引名；<br>　　4）key：实际使用的索引；<br>　　5）key_len：索引中被使用部分的长度（字节）；<br>　　6）ref：显示列名字或者”const”（不明白什么意思）；<br>　　7）rows：显示MySQL认为在找到正确结果之前必须扫描的行数；<br>　　8）extra：MySQL的建议；<br>　　<br>　　17、使用较短的定长列<br>　　1）尽可能使用较短的数据类型；<br>　　2）尽可能使用定长数据类型；<br>　　a）用char代替varchar，固定长度的数据处理比变长的快些；<br>　　b）对于频繁修改的表，磁盘容易形成碎片，从而影响数据库的整体性能；<br>　　c）万一出现数据表崩溃，使用固定长度数据行的表更容易重新构造。使用固定长度的数据行，每个记录的开始位置都是固定记录长度的倍数，可以很容易被检测到，但是使用可变长度的数据行就不一定了；<br>　　d）对于MyISAM类型的数据表，虽然转换成固定长度的数据列可以提高性能，但是占据的空间也大；<br>　　<br>　　18、使用not null和enum<br>　　尽量将列定义为not null，这样可使数据的出来更快，所需的空间更少，而且在查询时，MySQL不需要检查是否存在特例，即null值，从而优化查询；<br>　　如果一列只含有有限数目的特定值，如性别，是否有效或者入学年份等，在这种情况下应该考虑将其转换为enum列的值，MySQL处理的更快，因为所有的enum值在系统内都是以标识数值来表示的；<br>　　<br>　　19、使用optimize table<br>　　对于经常修改的表，容易产生碎片，使在查询数据库时必须读取更多的磁盘块，降低查询性能。具有可变长的表都存在磁盘碎片问题，这个问题对blob数据类型更为突出，因为其尺寸变化非常大。可以通过使用optimize table来整理碎片，保证数据库性能不下降，优化那些受碎片影响的数据表。 optimize table可以用于MyISAM和BDB类型的数据表。实际上任何碎片整理方法都是用mysqldump来转存数据表，然后使用转存后的文件并重新建数据表；<br>　　<br>　　20、使用procedure analyse()<br>　　可以使用procedure analyse()显示最佳类型的建议，使用很简单，在select语句后面加上procedure analyse()就可以了；例如：<br>　　select <em> from students procedure analyse();<br>　　select </em> from students procedure analyse(16,256);<br>　　第二条语句要求procedure analyse()不要建议含有多于16个值，或者含有多于256字节的enum类型，如果没有限制，输出可能会很长；<br>　　<br>　　21、使用查询缓存<br>　　1）查询缓存的工作方式：<br>　　第一次执行某条select语句时，服务器记住该查询的文本内容和查询结果，存储在缓存中，下次碰到这个语句时，直接从缓存中返回结果；当更新数据表后，该数据表的任何缓存查询都变成无效的，并且会被丢弃。<br>　　2）配置缓存参数：<br>　　变量：query_cache _type，查询缓存的操作模式。有3中模式，0：不缓存；1：缓存查询，除非与select sql_no_cache开头；2：根据需要只缓存那些以select sql_cache开头的查询；query_cache_size：设置查询缓存的最大结果集的大小，比这个值大的不会被缓存。<br>　　<br>　　22、调整硬件<br>　　1）在机器上装更多的内存；<br>　　2）增加更快的硬盘以减少I/O等待时间；<br>　　寻道时间是决定性能的主要因素，逐字地移动磁头是最慢的，一旦磁头定位，从磁道读则很快；<br>　　3）在不同的物理硬盘设备上重新分配磁盘活动；<br>　　如果可能，应将最繁忙的数据库存放在不同的物理设备上，这跟使用同一物理设备的不同分区是不同的，因为它们将争用相同的物理资源（磁头）。</c:\test.txt></p>
+<p>1、启动MySQL服务器<br>　　<br>　两种方法: 一是用winmysqladmin，如果机器启动时已自动运行，则可直接进入下一步操作。 二是在DOS方式下运行 d:\mysql\bin\mysqld<br>　(假设mysql 安装在d:\mysql);当然也可以 net start mysql命令启动。而Linux中启动时可用“/etc/rc.d/init.d/mysqld start”命令，注 意启动者应具有管理员权限。<br>　<br>2、进入mysql交互操作界面<br>　　<br>　　在DOS方式下，运行: d:\mysql\bin\mysql<br>　　出现: mysql 的提示符” mysql&gt; “，此时已进入mysql的交互操作方式。<br>　　如果出现 “ERROR 2003: Can′t connect to MySQL server on ′localhost′ (10061)“，说明你的MySQL还没有启动。<br>　　<br>3、退出MySQL操作界面<br>　　<br>　　在mysql&gt;提示符下输入quit可以随时退出交互操作界面:　　<br>　　mysql&gt; quit<br>　　Bye<br>　　<br>　<br>4、第一条命令(多条命令用 “,” 分隔 ,一条命令可以分成多行输入，直到出现分号”;”为止<br>　　<br>　　mysql&gt; select version(),current_date();<br>　　mysql&gt;Select (20+5)<em>4;<br>　　mysql&gt;Select (20+5)</em>4,sin(pi()/3);<br>　　mysql&gt;Select (20+5)*4 AS Result,sin(pi()/3); (AS: 指定假名为Result) </p>
+<p>5、常用sql 语句 </p>
+<p>1:使用SHOW语句找出在服务器上当前存在什么数据库：<br>mysql&gt; SHOW DATABASES;<br>2:2、创建一个数据库MYSQLDATA<br>mysql&gt; Create DATABASE MYSQLDATA;<br>3:选择你所创建的数据库<br>mysql&gt; USE MYSQLDATA; (按回车键出现Database changed 时说明操作成功！)<br>4:查看现在的数据库中存在什么表<br>mysql&gt; SHOW TABLES;<br>5:创建一个数据库表<br>mysql&gt; Create TABLE MYTABLE (name VARCHAR(20), sex CHAR(1));<br>6:显示表的结构：<br>mysql&gt; DESCRIBE MYTABLE;<br>7:往表中加入记录<br>mysql&gt; insert into MYTABLE values (”hyq”,”M”);<br>8:用文本方式将数据装入数据库表中（例如D:/mysql.txt）<br>mysql&gt; LOAD DATA LOCAL INFILE “D:/mysql.txt” INTO TABLE MYTABLE;<br>9:导入.sql文件命令（例如D:/mysql.sql）<br>mysql&gt;use database;<br>mysql&gt;source d:/mysql.sql;<br>10:删除表<br>mysql&gt;drop TABLE MYTABLE;<br>11:清空表<br>mysql&gt;delete from MYTABLE;<br>12:更新表中数据<br>mysql&gt;update MYTABLE set sex=”f” where name=’hyq’;<br>13:插入数据<br>mysq&gt;linsert into MYTABLE values (1, ‘第二章’, 0×2134545);<br>14:登录后使用数据库 mysql<br>mysql -u root -p mysql<br>mysql -u root -p -h 11.11.11.11 database<br>15:mysql jdbc连接url 使用中文<br>jdbc:mysql://localhost/test?useUnicode=true&amp;characterEncoding=gb2312 </p>
+<p>[separator] </p>
+<p>其它：<br>show processlist;列出每一笔联机的信息。<br>show varlables;列出mysql的系统设定。<br>show tables from db_name;列出db_name中所有数据表;<br>show [full] columns from table_name;列出table_name中完整信息，如栏名、类型,包括字符集编码。<br>show index from table_name; 列出table_name中所有的索引。<br>show table status;；列出当前数据库中数据表的信息。<br>show table status from db_name;；列出当前db_name中数据表的信息。<br>alter table table_name engine innodb|myisam|memory ;更改表类型<br>explain table_name / describe table_name ; 列出table_name完整信息，如栏名、类型。<br>show create table table_name 显示当前表的建表语句<br>alter table table_name add primary key (picid) ; 向表中增加一个主键<br>alter table table_name add column userid int after picid 修改表结构增加一个新的字段<br>alter table table_name character set gb2312 改变表的编码<br>select user(); 显示当前用户。<br>select password(’root’); 显示当前用户密码<br>select now(); 显示当前日期<br>flush privileges 在不重启的情况下刷新用户权限<br>mysqld –default-character-set=gb2312 ;设置默认字符集为gb2312 </p>
+<p>6、安全 </p>
+<p>刚安装好的MySql包含一个含空密码的root帐户和一个匿名帐户，这是很大的安全隐患，对于一些重要的应用我们应将安全性尽可能提高，在这里应把匿名帐户删除、 root帐户设置密码，可用如下命令进行： </p>
+<p>use mysql;<br>delete from User where User=””;<br>update User set Password=PASSWORD(’newpassword’) where User=’root’; </p>
+<p>改完重启 mysql 才能生效. </p>
+<p>上面命令参数是常用参数的一部分，详细情况可参考文档。此处的mydb是要登录的数据库的名称。<br>在进行开发和实际应用中，用户不应该只用root用户进行连接数据库，虽然使用root用户进行测试时很方便，但会给系统带来重大安全隐患，也不利于管理技术的提高。我们给一个应用中使用的用户赋予最恰当的数据库权限。如一个只进行数据插入的用户不应赋予其删除数据的权限。MySql的用户管理是通过 User表来实现的，添加新用户常用的方法有两个，一是在User表插入相应的数据行，同时设置相应的权限；二是通过GRANT命令创建具有某种权限的用户。其中GRANT的常用用法如下： </p>
+<p>grant all on mydb.<em> to NewUserName@HostName identified by “password” ;<br>grant usage on </em>.<em> to NewUserName@HostName identified by “password”;<br>grant select,insert,update on mydb.</em> to NewUserName@HostName identified by “password”;<br>grant update,delete on mydb.TestTable to NewUserName@HostName identified by “password”;<br>grant all privileges on <em>.</em> to root@localhost<br>grant select,insert,delete,update,alter,create,drop on lybbs.* to NewUserName@”%” identified by “lybbs”; </p>
+<p>若要给此用户赋予他在相应对象上的权限的管理能力，可在GRANT后面添加WITH GRANT OPTION选项。而对于用插入User表添加的用户，Password字段应用PASSWORD 函数进行更新加密，以防不轨之人窃看密码。对于那些已经不用的用户应给予清除，权限过界的用户应及时回收权限，回收权限可以通过更新User表相应字段，也可以使用REVOKE操作。 </p>
+<p>全局管理权限：<br>FILE: 在MySQL服务器上读写文件。<br>PROCESS: 显示或杀死属于其它用户的服务线程。<br>RELOAD: 重载访问控制表，刷新日志等。<br>SHUTDOWN: 关闭MySQL服务。<br>数据库/数据表/数据列权限：<br>Alter: 修改已存在的数据表(例如增加/删除列)和索引。<br>Create: 建立新的数据库或数据表。<br>Delete: 删除表的记录。<br>Drop: 删除数据表或数据库。<br>INDEX: 建立或删除索引。<br>Insert: 增加表的记录。<br>Select: 显示/搜索表的记录。<br>Update: 修改表中已存在的记录。<br>特别的权限：<br>ALL: 允许做任何事(和root一样)。<br>USAGE: 只允许登录–其它什么也不允许做。 </p>
+<p>修改默认密码：<br>cd d:\mysql\bin<br>mysqladmin -u root -p password 123456<br>回车出现<br>Enter password: ( 注:这是叫你输入原密码. 刚安装时密码为空,所以直接回车即可)<br>此时mysql 中账号 root 的密码 被改为 123456 安装完毕</p>
+<p>一、引言 </p>
+<p>　　 想使用Linux已经很长时间了，由于没有硬性任务一直也没有系统学习，近日由于工作需要必须使用Linux下的MySQL。本以为有Windows下使用SQL Server的经验，觉得在Linux下安装MySql应该是易如反掌的事，可在真正安装和使用MySQL时走了很多弯路，遇见很多问题，毕竟Linux和Windows本身就有很大区别。为了让和我一样的初学者在学习的过程中少走弯路，尽快入门，写了此文，希望对您有所帮助。本文的Linux环境是Red Hat 9.0，MySQL是4.0.16。 </p>
+<p>　　 二、安装Mysql </p>
+<p>　　 1、下载MySQL的安装文件<br>　　 安装MySQL需要下面两个文件：<br>　　 MySQL-server-4.0.16-0.i386.rpm　　　<br>　　 MySQL-client-4.0.16-0.i386.rpm<br>　　 下载地址为：<a href="http://www.mysql.com/downloads/mysql-4.0.html，" target="_blank" rel="external">http://www.mysql.com/downloads/mysql-4.0.html，</a> 打开此网页，下拉网页找到“Linux x86 RPM downloads”项，找到“Server”和“Client programs”项，下载需要的上述两个rpm文件。 </p>
+<p>　　 2、安装MySQL<br>　　 rpm文件是Red Hat公司开发的软件安装包，rpm可让Linux在安装软件包时免除许多复杂的手续。该命令在安装时常用的参数是 –ivh ,其中i表示将安装指定的rmp软件包，V表示安装时的详细信息，h表示在安装期间出现“#”符号来显示目前的安装过程。这个符号将持续到安装完成后才停止。<br>　　 1）安装服务器端<br>　　 在有两个rmp文件的目录下运行如下命令：<br>　　 [root@test1 local]# rpm -ivh MySQL-server-4.0.16-0.i386.rpm<br>　　 显示如下信息。<br>　　　 warning: MySQL-server-4.0.16-0.i386.rpm: V3 DSA signature: NOKEY, key ID 5072e1f5<br>　　 Preparing…　　　　　　　########################################### [100%]<br>　　 1:MySQL-server　　　　　########################################### [100%]<br>　　　 。。。。。。（省略显示）<br>　　 /usr/bin/mysqladmin -u root password ‘new-password’<br>　　 /usr/bin/mysqladmin -u root -h test1 password ‘new-password’<br>　　　 。。。。。。（省略显示）<br>　　 Starting mysqld daemon with databases from /var/lib/mysql<br>　　 如出现如上信息，服务端安装完毕。测试是否成功可运行netstat看Mysql端口是否打开，如打开表示服务已经启动，安装成功。Mysql默认的端口是3306。<br>　　 [root@test1 local]# netstat -nat<br>　　 Active Internet connections (servers and established)<br>　　 Proto Recv-Q Send-Q Local Address　　　　　 Foreign Address　　　　 State　　　<br>　　 tcp　　0　　0 0.0.0.0:3306　　　　 0.0.0.0:*　　　　　 LISTEN　　　<br>　　 上面显示可以看出MySQL服务已经启动。<br>　　 2）安装客户端<br>　　 运行如下命令：<br>　　 [root@test1 local]# rpm -ivh MySQL-client-4.0.16-0.i386.rpm<br>　　 warning: MySQL-client-4.0.16-0.i386.rpm: V3 DSA signature: NOKEY, key ID 5072e1f5<br>　　 Preparing…　　　　########################################### [100%]<br>　　 1:MySQL-client　 ########################################### [100%]<br>　　 显示安装完毕。<br>　　 用下面的命令连接mysql,测试是否成功。<br>　 三、登录MySQL </p>
+<p>　　 登录MySQL的命令是mysql， mysql 的使用语法如下：<br>　　 mysql [-u username] [-h host] [-p[password]] [dbname]<br>　　 username 与 password 分别是 MySQL 的用户名与密码，mysql的初始管理帐号是root，没有密码，注意：这个root用户不是Linux的系统用户。MySQL默认用户是root，由于初始没有密码，第一次进时只需键入mysql即可。<br>　　 [root@test1 local]# mysql<br>　　 Welcome to the MySQL monitor.　Commands end with ; or \g.<br>　　 Your MySQL connection id is 1 to server version: 4.0.16-standard<br>　　 Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the buffer.<br>　　 mysql&gt;<br>　　 出现了“mysql&gt;”提示符，恭喜你，安装成功！<br>　　 增加了密码后的登录格式如下：<br>　　 mysql -u root -p<br>　　 Enter password: (输入密码)<br>　　 其中-u后跟的是用户名，-p要求输入密码，回车后在输入密码处输入密码。 </p>
+<p>　　 注意：这个mysql文件在/usr/bin目录下，与后面讲的启动文件/etc/init.d/mysql不是一个文件。 </p>
+<p>　　 四、MySQL的几个重要目录 </p>
+<p>　　 MySQL安装完成后不象SQL Server默认安装在一个目录，它的数据库文件、配置文件和命令文件分别在不同的目录，了解这些目录非常重要，尤其对于Linux的初学者，因为Linux本身的目录结构就比较复杂，如果搞不清楚MySQL的安装目录那就无从谈起深入学习。 </p>
+<p>　　 下面就介绍一下这几个目录。 </p>
+<p>　　 1、数据库目录<br>　　 /var/lib/mysql/ </p>
+<p>　　 2、配置文件<br>　　 /usr/share/mysql（mysql.server命令及配置文件） </p>
+<p>　　 3、相关命令<br>　　 /usr/bin(mysqladmin mysqldump等命令) </p>
+<p>　　 4、启动脚本<br>　　 /etc/rc.d/init.d/（启动脚本文件mysql的目录）<br>　 五、修改登录密码 </p>
+<p>　　 MySQL默认没有密码，安装完毕增加密码的重要性是不言而喻的。 </p>
+<p>　　 1、命令<br>　　 usr/bin/mysqladmin -u root password ‘new-password’<br>　　 格式：mysqladmin -u用户名 -p旧密码 password 新密码 </p>
+<p>　　 2、例子<br>　　 例1：给root加个密码123456。<br>　　 键入以下命令 ：<br>　　 [root@test1 local]# /usr/bin/mysqladmin -u root password 123456<br>　　 注：因为开始时root没有密码，所以-p旧密码一项就可以省略了。 </p>
+<p>　　 3、测试是否修改成功<br>　　 1）不用密码登录<br>　　 [root@test1 local]# mysql<br>　　 ERROR 1045: Access denied for user: ‘root@localhost’ (Using password: NO)<br>　　 显示错误，说明密码已经修改。<br>　　 2）用修改后的密码登录<br>　　 [root@test1 local]# mysql -u root -p<br>　　 Enter password: (输入修改后的密码123456)<br>　　 Welcome to the MySQL monitor.　Commands end with ; or \g.<br>　　 Your MySQL connection id is 4 to server version: 4.0.16-standard<br>　　 Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the buffer.<br>　　 mysql&gt;<br>　　 成功！<br>　　 这是通过mysqladmin命令修改口令，也可通过修改库来更改口令。 </p>
+<p>　　 六、启动与停止 </p>
+<p>　　 1、启动<br>　　 MySQL安装完成后启动文件mysql在/etc/init.d目录下，在需要启动时运行下面命令即可。<br>　　 [root@test1 init.d]# /etc/init.d/mysql start </p>
+<p>　　 2、停止<br>　　 /usr/bin/mysqladmin -u root -p shutdown </p>
+<p>　　 3、自动启动<br>　　 1）察看mysql是否在自动启动列表中<br>　　 [root@test1 local]#　/sbin/chkconfig –list<br>　　 2）把MySQL添加到你系统的启动服务组里面去<br>　　 [root@test1 local]#　/sbin/chkconfig　– add　mysql<br>　　 3）把MySQL从启动服务组里面删除。<br>　　 [root@test1 local]#　/sbin/chkconfig　– del　mysql<br>七、更改MySQL目录 </p>
+<p>　　 MySQL默认的数据文件存储目录为/var/lib/mysql。假如要把目录移到/home/data下需要进行下面几步： </p>
+<p>　　 1、home目录下建立data目录<br>　　 cd /home<br>　　 mkdir data </p>
+<p>　　 2、把MySQL服务进程停掉：<br>　　 mysqladmin -u root -p shutdown </p>
+<p>　　 3、把/var/lib/mysql整个目录移到/home/data<br>　　 mv /var/lib/mysql　/home/data/<br>　　 这样就把MySQL的数据文件移动到了/home/data/mysql下 </p>
+<p>　　 4、找到my.cnf配置文件<br>　　 如果/etc/目录下没有my.cnf配置文件，请到/usr/share/mysql/下找到*.cnf文件，拷贝其中一个到/etc/并改名为my.cnf)中。命令如下：<br>　　 [root@test1 mysql]# cp /usr/share/mysql/my-medium.cnf　/etc/my.cnf </p>
+<p>　　 5、编辑MySQL的配置文件/etc/my.cnf<br>　　 为保证MySQL能够正常工作，需要指明mysql.sock文件的产生位置。 修改socket=/var/lib/mysql/mysql.sock一行中等号右边的值为：/home/mysql/mysql.sock 。操作如下：<br>　　 vi　 my.cnf　　　 (用vi工具编辑my.cnf文件，找到下列数据修改之)<br>　　 # The MySQL server<br>　　　 [mysqld]<br>　　　 port　　　= 3306<br>　　　 #socket　 = /var/lib/mysql/mysql.sock（原内容，为了更稳妥用“#”注释此行）<br>　　　 socket　 = /home/data/mysql/mysql.sock　　　（加上此行） </p>
+<p>　　 6、修改MySQL启动脚本/etc/rc.d/init.d/mysql<br>　　 最后，需要修改MySQL启动脚本/etc/rc.d/init.d/mysql，把其中datadir=/var/lib/mysql一行中，等号右边的路径改成你现在的实际存放路径：home/data/mysql。<br>　　 [root@test1 etc]# vi　/etc/rc.d/init.d/mysql<br>　　 #datadir=/var/lib/mysql　　　　（注释此行）<br>　　 datadir=/home/data/mysql　　 （加上此行） </p>
+<p>　　 7、重新启动MySQL服务<br>　　 /etc/rc.d/init.d/mysql　start<br>　　 或用reboot命令重启Linux<br>　　 如果工作正常移动就成功了，否则对照前面的7步再检查一下。 </p>
+<p>　　 八、MySQL的常用操作 </p>
+<p>　　 注意：MySQL中每个命令后都要以分号；结尾。 </p>
+<p>　　 1、显示数据库<br>　　 mysql&gt; show databases;<br>　　 +———-+<br>　　 | Database |<br>　　 +———-+<br>　　 | mysql　　|<br>　　 | test　　 |<br>　　 +———-+<br>　　 2 rows in set (0.04 sec)<br>　　 Mysql刚安装完有两个数据库：mysql和test。mysql库非常重要，它里面有MySQL的系统信息，我们改密码和新增用户，实际上就是用这个库中的相关表进行操作。 </p>
+<p>　　 2、显示数据库中的表<br>　　 mysql&gt; use mysql; （打开库，对每个库进行操作就要打开此库，类似于foxpro ）<br>　　 Database changed </p>
+<p>　　 mysql&gt; show tables;<br>　　 +—————–+<br>　　 | Tables_in_mysql |<br>　　 +—————–+<br>　　 | columns_priv　　|<br>　　 | db　　　　　　　|<br>　　 | func　　　　　　|<br>　　 | host　　　　　　|<br>　　 | tables_priv　　 |<br>　　 | user　　　　　　|<br>　　 +—————–+<br>　　 6 rows in set (0.01 sec) </p>
+<p>　　 3、显示数据表的结构：<br>　　 describe 表名; </p>
+<p>　　 4、显示表中的记录：<br>　　 select <em> from 表名;<br>　　 例如：显示mysql库中user表中的纪录。所有能对MySQL用户操作的用户都在此表中。<br>　　 Select </em> from user; </p>
+<p>　　 5、建库：<br>　　 create database 库名;<br>　　 例如：创建一个名字位aaa的库<br>　　 mysql&gt; create databases aaa;<br>6、建表：<br>　　 use 库名；<br>　　 create table 表名 (字段设定列表)；<br>　　 例如：在刚创建的aaa库中建立表name,表中有id(序号，自动增长)，xm（姓名）,xb（性别）,csny（出身年月）四个字段<br>　　 use aaa;<br>　　 mysql&gt; create table name (id int(3) auto_increment not null primary key, xm char(8),xb char(2),csny date);<br>　　 可以用describe命令察看刚建立的表结构。<br>　　 mysql&gt; describe name; </p>
+<p>　　 +——-+———+——+—–+———+—————-+<br>　　 | Field | Type　　| Null | Key | Default | Extra　　　　　|<br>　　 +——-+———+——+—–+———+—————-+<br>　　 | id　　| int(3)　|　　　| PRI | NULL　　| auto_increment |<br>　　 | xm　　| char(8) | YES　|　　 | NULL　　|　　　　　　　　|<br>　　 | xb　　| char(2) | YES　|　　 | NULL　　|　　　　　　　　|<br>　　 | csny　| date　　| YES　|　　 | NULL　　|　　　　　　　　|<br>　　 +——-+———+——+—–+———+—————-+ </p>
+<p>　　 7、增加记录<br>　　 例如：增加几条相关纪录。<br>　　 mysql&gt; insert into name values(‘’,’张三’,’男’,’1971-10-01’);<br>　　 mysql&gt; insert into name values(‘’,’白云’,’女’,’1972-05-20’);<br>　　 可用select命令来验证结果。<br>　　 mysql&gt; select * from name;<br>　　 +—-+——+——+————+<br>　　 | id | xm　 | xb　 | csny　　　 |<br>　　 +—-+——+——+————+<br>　　 |　1 | 张三 | 男　 | 1971-10-01 |<br>　　 |　2 | 白云 | 女　 | 1972-05-20 |<br>　　 +—-+——+——+————+ </p>
+<p>　　 8、修改纪录<br>　　 例如：将张三的出生年月改为1971-01-10<br>　　 mysql&gt; update name set csny=’1971-01-10’ where xm=’张三’; </p>
+<p>　　 9、删除纪录<br>　　 例如：删除张三的纪录。<br>　　 mysql&gt; delete from name where xm=’张三’; </p>
+<p>　　 10、删库和删表<br>　　 drop database 库名;<br>　　 drop table 表名； </p>
+<p>　　 九、增加MySQL用户 </p>
+<p>　　 格式：grant select on 数据库.* to 用户名@登录主机 identified by “密码”<br>例1、增加一个用户user_1密码为123，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。首先用以root用户连入MySQL，然后键入以下命令： </p>
+<p>　　 mysql&gt; grant select,insert,update,delete on <em>.</em> to user_1@”%” Identified by “123”;<br>例1增加的用户是十分危险的，如果知道了user_1的密码，那么他就可以在网上的任何一台电脑上登录你的MySQL数据库并对你的数据为所欲为了，解决办法见例2。 </p>
+<p>　　 例2、增加一个用户user_2密码为123,让此用户只可以在localhost上登录，并可以对数据库aaa进行查询、插入、修改、删除的操作（localhost指本地主机，即MySQL数据库所在的那台主机），这样用户即使用知道user_2的密码，他也无法从网上直接访问数据库，只能通过MYSQL主机来操作aaa库。 </p>
+<p>　　 mysql&gt;grant select,insert,update,delete on aaa.* to user_2@localhost identified by “123”; </p>
+<p>　　 用新增的用户如果登录不了MySQL，在登录时用如下命令： </p>
+<p>　　 mysql -u user_1 -p　-h 192.168.113.50　（-h后跟的是要登录主机的ip地址） </p>
+<p>　　 十、备份与恢复 </p>
+<p>　　 1、备份 </p>
+<p>　　 例如：将上例创建的aaa库备份到文件back_aaa中 </p>
+<p>　　 [root@test1 root]# cd　/home/data/mysql　(进入到库目录，本例库已由val/lib/mysql转到/home/data/mysql，见上述第七部分内容)<br>　　 [root@test1 mysql]# mysqldump -u root -p –opt aaa &gt; back_aaa </p>
+<p>　　 2、恢复 </p>
+<p>　　 [root@test mysql]# mysql -u root -p ccc &lt; back_aaa</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image" alt="yilikun WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image" alt="yilikun Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/23/彻底弄懂CommonJS和AMD-CMD！/" rel="next" title="'彻底弄懂CommonJS和AMD/CMD！'">
+                <i class="fa fa-chevron-left"></i> '彻底弄懂CommonJS和AMD/CMD！'
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="yilikun" />
+          <p class="site-author-name" itemprop="name">yilikun</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yilikun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yilikun</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
