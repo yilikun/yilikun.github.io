@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="markdown," />
+  <meta name="keywords" content="centos," />
 
 
 
@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="markdown十分钟学会">
-<meta name="keywords" content="markdown">
+<meta name="description" content="centos的软件安装大致可以分为两种类型：[centos]rpm文件安装，使用rpm指令  类似[ubuntu]deb文件安装，使用dpkg指令[centos]yum安装   类似[ubuntu]apt-get安装rpm命令(一)查询系统装已经安装的软件信息 对于一个rpm包来说，都是有”-“和”.”构成的，基本上有以下几部分组成：  包名  版本信息  发布版本号  运行平台，当出现noarc">
+<meta name="keywords" content="centos">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&#39;markdown学习语法&#39;">
-<meta property="og:url" content="http://yoursite.com/2017/05/13/markdown学习语法/index.html">
+<meta property="og:title" content="centos 安装软件命令">
+<meta property="og:url" content="http://yoursite.com/2017/05/30/centos-安装软件命令/index.html">
 <meta property="og:site_name" content="Dimon">
-<meta property="og:description" content="markdown十分钟学会">
-<meta property="og:updated_time" content="2017-05-13T10:32:33.807Z">
+<meta property="og:description" content="centos的软件安装大致可以分为两种类型：[centos]rpm文件安装，使用rpm指令  类似[ubuntu]deb文件安装，使用dpkg指令[centos]yum安装   类似[ubuntu]apt-get安装rpm命令(一)查询系统装已经安装的软件信息 对于一个rpm包来说，都是有”-“和”.”构成的，基本上有以下几部分组成：  包名  版本信息  发布版本号  运行平台，当出现noarc">
+<meta property="og:updated_time" content="2017-05-30T05:25:03.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&#39;markdown学习语法&#39;">
-<meta name="twitter:description" content="markdown十分钟学会">
+<meta name="twitter:title" content="centos 安装软件命令">
+<meta name="twitter:description" content="centos的软件安装大致可以分为两种类型：[centos]rpm文件安装，使用rpm指令  类似[ubuntu]deb文件安装，使用dpkg指令[centos]yum安装   类似[ubuntu]apt-get安装rpm命令(一)查询系统装已经安装的软件信息 对于一个rpm包来说，都是有”-“和”.”构成的，基本上有以下几部分组成：  包名  版本信息  发布版本号  运行平台，当出现noarc">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/13/markdown学习语法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/30/centos-安装软件命令/"/>
 
 
 
 
 
-  <title>'markdown学习语法' | Dimon</title>
+  <title>centos 安装软件命令 | Dimon</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +273,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/13/markdown学习语法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/30/centos-安装软件命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yilikun">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">'markdown学习语法'</h1>
+          <h1 class="post-title" itemprop="name headline">centos 安装软件命令</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-13T18:31:50+08:00">
-                2017-05-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T13:24:07+08:00">
+                2017-05-30
               </time>
             
 
@@ -337,7 +337,61 @@
       
 
       
-        <p><a href="http://libingfeng07.com/2016/01/04/markdown-grammer/#" target="_blank" rel="external">markdown十分钟学会</a></p>
+        <p>centos的软件安装大致可以分为两种类型：<br>[centos]rpm文件安装，使用rpm指令  类似[ubuntu]deb文件安装，使用dpkg指令<br>[centos]yum安装   类似[ubuntu]apt-get安装<br>rpm命令<br>(一)查询系统装已经安装的软件信息</p>
+<p>对于一个rpm包来说，都是有”-“和”.”构成的，基本上有以下几部分组成： <em> 包名 </em> 版本信息 <em> 发布版本号 </em> 运行平台，当出现noarch,代表的是软件可以平台兼容<br>1）查询系统中已经安装的软件<br><a id="more"></a><br>rpm -qa<br> 2）查询一个已经安装的文件属于哪个软件包；</p>
+<p>rpm -qf 文件名的绝对路径<br>3）查询已安装软件包都安装到何处；</p>
+<p>软件名定义是:rpm包去除平台信息和后缀后的信息</p>
+<p>rpm -ql 软件名<br>4）查询一个已安装软件包的信息</p>
+<p>rpm  -qi 软件名<br>5）查看一下已安装软件的配置文件；</p>
+<p>rpm -qc 软件名<br>6）查看一个已经安装软件的文档安装位置：</p>
+<p>rpm -qd 软件名<br>7）查看一下已安装软件所依赖的软件包及文件；</p>
+<p>rpm -qR 软件名</p>
+<p>(二)对于未安装的软件包信息查询</p>
+<p>1）查看一个软件包的用途、版本等信息；</p>
+<p>rpm -qpi rpm文件<br>2）查看一件软件包所包含的文件；</p>
+<p>rpm -qpl rpm文件<br>3）查看软件包的文档所在的位置；</p>
+<p>rpm -qpd rpm文件<br>4）查看一个软件包的配置文件；</p>
+<p>rpm -qpc rpm文件<br>5）查看一个软件包的依赖关系</p>
+<p>rpm -qpR rpm文件</p>
+<p>(三)软件包的安装、升级、删除等</p>
+<p>1)安装或者升级一个rpm包</p>
+<p>rpm -ivh rpm文件【安装】 rpm -Uvh rpm文件【更新】<br>2)删除一个rpm 包</p>
+<p>rpm -e 软件名<br> 如何需要不管依赖问题，强制删除软件，在如上命令其后加上 –nodeps</p>
+<p>(四)签名导入</p>
+<p>rpm –import 签名文件  rpm –import RPM-GPG-KEY<br> yum命令</p>
+<p>(一)yum基本概念<br>1)yum是什么<br> yum = Yellow dog Updater, Modified  主要功能是更方便的添加/删除/更新RPM包.  它能自动解决包的倚赖性问题.  它能便于管理大量系统的更新问题<br>2)yum的特点</p>
+<p>可以同时配置多个资源库(Repository)  简洁的配置文件(/etc/yum.conf  自动解决增加或删除rpm包时遇到的倚赖性问题  使用方便  保持与RPM数据库的一致性<br>3)yum安装</p>
+<p>CentOS自带(yum-<em>.noarch.rpm) #rpm -ivh yum-</em>.noarch.rpm 在第一次启用yum之前首先需要导入系统的RPM-GPG-KEY：</p>
+<p>(二)yum指令的使用</p>
+<p>当第一次使用yum管理软件时，yum会自动下载所需要的headers放置在/var/cache/yum目录下；</p>
+<p>1) rpm包的更新</p>
+<p>#检查可以更新的软件包<br>yum check-update </p>
+<p>#更新所有的软件包<br>yum update </p>
+<p>#更新特定的软件包<br>yum update kernel </p>
+<p>#大规模的升级<br>yum upgrade</p>
+<p>2) rpm包的安装和删除</p>
+<p>#rpm包的安装和删除<br>yum install xxx【服务名】<br>yum remove xxx【服务名】<br>3) yum缓存的相关信息</p>
+<p>#清楚缓存中rpm包文件<br>yum clean packages </p>
+<p>#清楚缓存中rpm的头文件<br>yum clean  headers </p>
+<p>#清除缓存中旧的头文件<br>yum clean old headers </p>
+<p>#清除缓存中旧的rpm头文件和包文件<br>yum clean all</p>
+<p>4)软件包信息查询</p>
+<p>#列出资源库中所有可以安装或更新的rpm包<br>yum list </p>
+<p>#列出资源库中特定的可以安装或更新以及已经安装的rpm包<br>yum list firfox*<br>N:可以在rpm包名中使用通配符,查询类似的rpm包</p>
+<p>#列出资源库中所有可以更新的rpm包<br>yum list updates </p>
+<p>#列出已经安装的所有的rpm包<br>yum list installed </p>
+<p>#列出已经安装的但是不包含在资源库中的rpm包<br>yum list extras<br>N:通过如网站下载安装的rpm包  </p>
+<p>#rpm包信息显示(info参数同list)，列出资源库中所有可以安装或更新的rpm包的信息<br>yum info </p>
+<p>#列出资源库中特定的可以安装或更新以及已经安装的rpm包的信息 </p>
+<p>yum info firefox*<br>N:可以在rpm包名中使用匹配符 </p>
+<p>#列出资源库中所有可以更新的rpm包的信息<br>yum info updates </p>
+<p>#列出已经安装的所有的rpm包的信息</p>
+<p> yum info installed </p>
+<p>#列出已经安装的但是不包含在资源库中的rpm包的信息<br>yum info extras<br>N:通过如网站下载安装的rpm包的信息</p>
+<p>#搜索匹配特定字符的rpm包<br>yum search firofox</p>
+<p>#搜索包含特定文件的rpm包<br>yum provides firefox</p>
+<p>(三)yum软件源更新</p>
+<p><a href="http://mirrors.163.com/.help/centos.html" target="_blank" rel="external">http://mirrors.163.com/.help/centos.html</a></p>
 
       
     </div>
@@ -388,7 +442,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/markdown/" rel="tag"># markdown</a>
+            <a href="/tags/centos/" rel="tag"># centos</a>
           
         </div>
       
@@ -401,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/13/hexo一定要注意的问题！/" rel="next" title="'hexo一定要注意的问题！'">
-                <i class="fa fa-chevron-left"></i> 'hexo一定要注意的问题！'
+              <a href="/2017/05/26/v8和Nodejs/" rel="next" title="'v8'">
+                <i class="fa fa-chevron-left"></i> 'v8'
               </a>
             
           </div>
@@ -410,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/13/回车和换行的故事/" rel="prev" title="'回车和换行的故事'">
-                '回车和换行的故事' <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
