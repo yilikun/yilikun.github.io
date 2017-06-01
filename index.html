@@ -338,7 +338,35 @@
       
         
           
-            
+            <p>如何查看mysql 默认端口号和修改端口号 2015-03-19 17:42:18  </p>
+<ol>
+<li>登录mysql  </li>
+</ol>
+<p>[root@test /]# mysql -u root -p<br>Enter password:  </p>
+<ol>
+<li>使用命令show global variables like ‘port’;查看端口号  </li>
+</ol>
+<p>mysql&gt; show global variables like ‘port’;<br>+—————+——-+<br>| Variable_name | Value |<br>+—————+——-+<br>| port | 3306 |<br>+—————+——-+<br>1 row in set (0.00 sec)  </p>
+<ol>
+<li>修改端口，编辑/etc/my.cnf文件，早期版本有可能是my.conf文件名，增加端口参数，并且设定端口，注意该端口未被使用，保存退出。  </li>
+</ol>
+<p>[root@test etc]# vi my.cnf<br>[mysqld]<br>port=3506<br>datadir=/var/lib/mysql<br>socket=/var/lib/mysql/mysql.sock<br>user=mysql  </p>
+<h1 id="Disabling-symbolic-links-is-recommended-to-prevent-assorted-security-risks"><a href="#Disabling-symbolic-links-is-recommended-to-prevent-assorted-security-risks" class="headerlink" title="Disabling symbolic-links is recommended to prevent assorted security risks"></a>Disabling symbolic-links is recommended to prevent assorted security risks</h1><p>symbolic-links=0  </p>
+<p>[mysqld_safe]<br>log-error=/var/log/mysqld.log<br>pid-file=/var/run/mysqld/mysqld.pid  </p>
+<p>“my.cnf” 11L, 261C written<br>[root@test etc]#  </p>
+<ol>
+<li>重新启动mysql  </li>
+</ol>
+<p>[root@test ~]# /etc/init.d/mysqld restart<br>Stopping mysqld: [ OK ]<br>Starting mysqld: [ OK ]  </p>
+<p>5.再次登录后检查端口已修改为’3506’.  </p>
+<p>[root@test etc]# mysql -u root -p<br>Enter password:<br>Welcome to the MySQL monitor. Commands end with ; or \g.<br>Your MySQL connection id is 2<br>Server version: 5.1.66 Source distribution  </p>
+<p>Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.  </p>
+<p>Oracle is a registered trademark of Oracle Corporation and/or its<br>affiliates. Other names may be trademarks of their respective<br>owners.  </p>
+<p>Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the current input statement.  </p>
+<p>mysql&gt; show global variables like ‘port’;<br>+—————+——-+<br>| Variable_name | Value |<br>+—————+——-+<br>| port | 3506 |<br>+—————+——-+<br>1 row in set (0.00 sec)  </p>
+<p>mysql&gt;  </p>
+<p>总结：注意修改的端口不要被占用，而且要有规划，不要轻意的总是调整数据库端口。还有就是安全保障，记得与负责网络的人提前通知，以免端口无法正常使用。   </p>
+
           
         
       
@@ -1516,7 +1544,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
